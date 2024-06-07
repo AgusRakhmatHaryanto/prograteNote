@@ -8,12 +8,12 @@ import EditNote from "./screens/editNote";
 
 import Home from "./screens/home";
 
-const CurrentPageWidget = ({ currentPage, noteList, setCurrentPage }) => {
+const CurrentPageWidget = ({ currentPage, noteList, setCurrentPage ,addNote}) => {
   switch (currentPage) {
     case "Home":
       return <Home noteList={noteList} setCurrentPage={setCurrentPage} />;
     case "AddNote":
-      return <AddNote />;
+      return <AddNote setCurrentPage={setCurrentPage} addNote={addNote} />;
     case "EditNote":
       return <EditNote />;
     default:
@@ -30,11 +30,26 @@ export default function App() {
       desc: "Lorem I  psum is simply dummy text of the printing and typesetting industry",
     },
   ]);
+
+  const addNote = (title, desc) => {
+    const id = noteList.length > 0 ? noteList[noteList.length - 1].id + 1 : 1;
+    
+    setNoteList([
+      ...noteList,
+      {
+        id,
+        title,
+        desc
+      }
+    ]);
+  }
+
   return (
     <CurrentPageWidget
-    currentPage={currentPage}
-    setCurrentPage={setCurrentPage}
-    noteList={noteList}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+      noteList={noteList}
+      addNote={addNote}
     />
     // <View
     // // style={styles.container}
