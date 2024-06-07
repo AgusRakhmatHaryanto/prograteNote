@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import CustomButton from "./components/customButtom";
-import CustomTextInput from "./components/customTextInput";
+import CustomButton from "./src/components/customButtom";
+import CustomTextInput from "./src/components/customTextInput";
 import AddNote from "./screens/addNote";
 import EditNote from "./screens/editNote";
 
