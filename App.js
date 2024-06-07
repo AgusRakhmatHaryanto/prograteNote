@@ -3,10 +3,10 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import CustomButton from "./src/components/customButtom";
 import CustomTextInput from "./src/components/customTextInput";
-import AddNote from "./screens/addNote";
-import EditNote from "./screens/editNote";
+import AddNote from "./src/screens/addNote";
+import EditNote from "./src/screens/editNote";
 
-import Home from "./screens/home";
+import Home from "./src/screens/home";
 
 const CurrentPageWidget = ({
   currentPage,
