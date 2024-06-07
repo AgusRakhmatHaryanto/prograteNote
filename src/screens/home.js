@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, StyleSheet, View, Text } from "react-native";
 import CustomButton from "../components/customButtom";
 
-const NoteCard = ({ item, setCurrentPage }) => (
+const NoteCard = ({ item, setCurrentPage, setNoteToEdit, deleteNote }) => (
   <View style={styles.card}>
     <Text style={styles.cardTitle}>{item.title}</Text>
     <Text>{item.desc}</Text>
@@ -13,7 +13,10 @@ const NoteCard = ({ item, setCurrentPage }) => (
         text="Ubah"
         fontSize={12}
         width={100}
-        onPress={() => {setCurrentPage("EditNote")}}
+        onPress={() => {
+          setCurrentPage("EditNote");
+          setNoteToEdit(item);
+        }}
       />
       <CustomButton
         backgroundColor="#D82148"
@@ -21,7 +24,9 @@ const NoteCard = ({ item, setCurrentPage }) => (
         text="Hapus"
         fontSize={12}
         width={100}
-        onPress={() => {}}
+        onPress={() => {
+          deleteNote(item.id);
+        }}
       />
     </View>
   </View>
@@ -55,7 +60,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Home({ noteList, setCurrentPage }) {
+export default function Home({
+  noteList,
+  setCurrentPage,
+  setNoteToEdit,
+  deleteNote,
+}) {
   return (
     <View style={styles.container}>
       <CustomButton
@@ -63,12 +73,21 @@ export default function Home({ noteList, setCurrentPage }) {
         color="#203239"
         text="Tambahkan Note"
         width="100%"
-        onPress={() => {setCurrentPage("AddNote")}}
+        onPress={() => {
+          setCurrentPage("AddNote");
+        }}
       />
       <FlatList
         showsVerticalScrollIndicator={false}
         data={noteList}
-        renderItem={({ item }) => (<NoteCard item={item} setCurrentPage={setCurrentPage} />)}
+        renderItem={({ item }) => (
+          <NoteCard 
+          item={item}
+          setCurrentPage={setCurrentPage} 
+          setNoteToEdit={setNoteToEdit}
+          deleteNote={deleteNote}
+          />
+        )}
         keyExtractor={(item) => item.id}
       />
     </View>
